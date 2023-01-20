@@ -14,9 +14,25 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 });
 builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>
-    (opt => opt.SignIn.RequireConfirmedEmail = true)
+    (opt => opt.SignIn.RequireConfirmedEmail = false)
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Default Password settings.
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 3;
+    options.Password.RequiredUniqueChars = 1;
+
+    // Default SignIn settings.
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+
+});
 
 builder.Services.AddScoped<CadastroService, CadastroService>();
 builder.Services.AddScoped<LoginService, LoginService>();

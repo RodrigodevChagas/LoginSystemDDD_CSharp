@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using SistemaDeLogin.Data.Requests;
 using SistemaDeLogin.Services;
 
 namespace SistemaDeLogin.Controllers
@@ -20,10 +21,10 @@ namespace SistemaDeLogin.Controllers
 
 
         [HttpPost]
-        public IActionResult LogaUsuario(string usuario, string senha)
+        public IActionResult LogaUsuario(LoginRequest request)
         {
 
-            Result resultado = loginService.LogaUsuario(usuario, senha);
+            Result resultado = loginService.LogaUsuario(request);
             if (resultado.IsFailed) return Unauthorized(resultado.Errors);
             return Json(new { Msg = "Usuario logado com sucesso" });
         }

@@ -17,14 +17,14 @@ namespace SistemaDeLogin.Services
             _tokenService = tokenService;
         }
         
-        public Result LogaUsuario(string usuario, string senha)
+        public Result LogaUsuario(LoginRequest request)
         {
-            var resultadoIdentity = _signInManager.PasswordSignInAsync(usuario, senha, false, false);
-            if (resultadoIdentity.Result.Succeeded) {
+            var resultadoIdentity = _signInManager.PasswordSignInAsync(request.Username, request.Password, false, false);
+            if (resultadoIdentity.Result.Succeeded && request.Username != null) {
                 IdentityUser<int> identityUser = _signInManager
                     .UserManager
                     .Users
-                    .FirstOrDefault(identidade => identidade.NormalizedUserName == usuario.ToUpper())!;
+                    .FirstOrDefault(identidade => identidade.NormalizedUserName == request.Username.ToUpper())!;
                 Token token = _tokenService.CreateToken(identityUser);
                 return Result.Ok().WithSuccess(token.Value);
             }

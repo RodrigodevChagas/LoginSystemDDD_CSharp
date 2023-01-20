@@ -1,11 +1,10 @@
 ﻿@model Usuarios;
-@using SistemaDeLogin.Data;
 
 @{
     ViewData["TItle"] = "Cadastre-se";
 }
 
-<form>
+<form asp-controller="Cadastro" asp-action="CreateUser" method="post">
     <div class="mb-3">
         <label for="Name" class="form-label">Name</label>
             <input type="text" asp-for="Name" class="form-control"  id="Name" placeholder="Type your name">
@@ -24,11 +23,11 @@
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" asp-for="usuario.Password" class="form-control" id="Password" placeholder="Type your password">
+        <input type="password" asp-for="Password" class="form-control" id="Password" placeholder="Type your password">
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Repassword</label>
-        <input type="password" asp-for="usuario.Repassword" class="form-control" id="Repassword" placeholder="Retype your password">
+        <input type="password" asp-for="Repassword" class="form-control" id="Repassword" placeholder="Retype your password">
     </div>
     <div class="mb-3 form-check">
     </div>

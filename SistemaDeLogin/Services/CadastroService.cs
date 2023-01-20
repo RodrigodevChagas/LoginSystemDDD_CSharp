@@ -18,7 +18,7 @@ namespace SistemaDeLogin.Services
             _userManager = userManager;
         }
 
-        public Result CadastraUsuario(CreateUsuarioDto createUsuarioDto)
+        public Result CreateUser(CreateUsuarioDto createUsuarioDto)
         {
             
             Usuarios usuario = _mapper.Map<Usuarios>(createUsuarioDto);

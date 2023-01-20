@@ -34,6 +34,14 @@ namespace SistemaDeLogin.Models
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        public CreateUsuarioDto usuario = new CreateUsuarioDto ();
+        [Required]
+        [Column("Password")]
+        [Display(Name = "Password")]
+        public string Password { get; set; } = string.Empty;
+
+        [Required]
+        [Column("Repassword")]
+        [Display(Name = "Repassword")]
+        public string Repassword { get; set; } = string.Empty;
     }
 }
