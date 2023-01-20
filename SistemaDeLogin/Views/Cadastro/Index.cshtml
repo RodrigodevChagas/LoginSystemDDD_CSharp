@@ -1,5 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Usuarios;
+@using SistemaDeLogin.Data;
+
 @{
+    ViewData["TItle"] = "Cadastre-se";
 }
+
+<form>
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+            <input type="text" asp-for="Name" class="form-control"  id="Name" placeholder="Type your name">
+    </div>
+    <div class="mb-3">
+        <label for="Username" class="form-label">Username</label>
+            <input type="text" asp-for="Username" class="form-control"  id="Name" placeholder="Type your name">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">PhoneNumber</label>
+        <input type="text" asp-for="PhoneNumber" class="form-control" id="PhoneNumber" placeholder="(xx) xxxxx-xxxx">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" asp-for="Email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Type your email">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" asp-for="usuario.Password" class="form-control" id="Password" placeholder="Type your password">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Repassword</label>
+        <input type="password" asp-for="usuario.Repassword" class="form-control" id="Repassword" placeholder="Retype your password">
+    </div>
+    <div class="mb-3 form-check">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

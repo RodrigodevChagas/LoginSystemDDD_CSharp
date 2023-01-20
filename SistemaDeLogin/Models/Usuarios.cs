@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SistemaDeLogin.Data.Dtos;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaDeLogin.Models
@@ -17,10 +18,22 @@ namespace SistemaDeLogin.Models
         
         [Column("Nome")]
         [Display(Name = "Nome")]
-        public string Nome { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         
+        [Required]
+        [Column("Email")]
+        [Display(Name = "Email")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required]
         [Column("Username")]
         [Display(Name = "Username")]
         public string Username { get; set; } = string.Empty;
+
+        [Column("PhoneNumber")]
+        [Display(Name = "PhoneNumber")]
+        public string PhoneNumber { get; set; } = string.Empty;
+
+        public CreateUsuarioDto usuario = new CreateUsuarioDto ();
     }
 }
