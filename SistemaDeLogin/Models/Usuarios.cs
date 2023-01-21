@@ -25,7 +25,7 @@ namespace SistemaDeLogin.Models
         [Display(Name = "Email")]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "Looks like you forgort the username!")]
         [Column("Username")]
         [Display(Name = "Username")]
         public string Username { get; set; } = string.Empty;

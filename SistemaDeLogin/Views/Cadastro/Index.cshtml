@@ -4,32 +4,36 @@
     ViewData["TItle"] = "Cadastre-se";
 }
 
-<form asp-controller="Cadastro" asp-action="CreateUser" method="post">
+<form asp-controller="Cadastro" asp-action="CreateUser" method="post" id="Form">
     <div class="mb-3">
         <label for="Name" class="form-label">Name</label>
-            <input type="text" asp-for="Name" class="form-control"  id="Name" placeholder="Type your name">
+            <input type="text" asp-for="Name" class="form-control" id="Name" placeholder="Type your name">
     </div>
     <div class="mb-3">
         <label for="Username" class="form-label">Username</label>
-            <input type="text" asp-for="Username" class="form-control"  id="Name" placeholder="Type your name">
+        <input type="text" asp-for="Username" class="form-control reqField" id="Username" placeholder="Type your username">
+        <span asp-validation-for="Username" class="field-validation-valid text-danger"></span>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">PhoneNumber</label>
-        <input type="text" asp-for="PhoneNumber" class="form-control" id="PhoneNumber" placeholder="(xx) xxxxx-xxxx">
+        <label for="PhoneNumber" class="form-label">PhoneNumber</label>
+        <input type="text" asp-for="PhoneNumber" class="form-control reqField" id="PhoneNumber" placeholder="(xx) xxxxx-xxxx" required>
     </div>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" asp-for="Email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Type your email">
+        <label for="Email1" class="form-label">Email address</label>
+        <input type="email" asp-for="Email" class="form-control reqField" id="Email" aria-describedby="emailHelp" placeholder="Type your email" required>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" asp-for="Password" class="form-control" id="Password" placeholder="Type your password">
+        <label for="Repassword" class="form-label">Password</label>
+        <input type="password" asp-for="Password" class="form-control reqField" id="Password" placeholder="Type your password" required>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Repassword</label>
-        <input type="password" asp-for="Repassword" class="form-control" id="Repassword" placeholder="Retype your password">
+        <label for="Repassword" class="form-label">Repassword</label>
+        <input type="password" asp-for="Repassword" class="form-control reqField" id="Repassword" placeholder="Retype your password" required>
     </div>
     <div class="mb-3 form-check">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Confirmar</button>
+    <a role="button" class="btn btn-primary"  asp-controller="Home" asp-action="Index">Cancelar</a>
 </form>
+
+<script src="~/js/Cadastro.js"></script>

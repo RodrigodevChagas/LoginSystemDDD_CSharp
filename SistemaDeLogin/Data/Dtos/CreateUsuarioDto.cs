@@ -11,7 +11,7 @@ namespace SistemaDeLogin.Data.Dtos
         [Display(Name = "Nome")]
         public string Name { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "Looks like you forgort the username!")]
         public string Username { get; set; } = string.Empty;
 
         [Required]
