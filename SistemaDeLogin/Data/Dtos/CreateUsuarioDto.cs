@@ -11,7 +11,7 @@ namespace SistemaDeLogin.Data.Dtos
         [Display(Name = "Nome")]
         public string Name { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Looks like you forgort the username!")]
+        [Required]
         public string Username { get; set; } = string.Empty;
 
         [Required]
@@ -25,7 +25,6 @@ namespace SistemaDeLogin.Data.Dtos
         [Compare("Password")]
         public string Repassword { get; set; } = string.Empty;
 
-        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; } = string.Empty;
     }
 }
