@@ -4,40 +4,48 @@
     ViewData["TItle"] = "Cadastre-se";
 }
 
-<form asp-controller="Cadastro" asp-action="CreateUser" method="post" id="Form">
-    <div class="mb-3">
-        <label for="Name" class="form-label">Name</label>
-            <input type="text" asp-for="Name" class="form-control" id="Name" placeholder="Type your name">
-    </div>
-    <div class="mb-3">
-        <label for="Username" class="form-label">Username</label>
-        <input type="text" asp-for="Username" class="form-control reqField" id="Username"
-               placeholder="Type your username" required oninvalid="setCustomValidity('You forgot to type your Username!')" oninput="this.setCustomValidity('')"/>
-    </div>
-    <div class="mb-3">
-        <label for="PhoneNumber" class="form-label">PhoneNumber</label>
-        <input type="text" asp-for="PhoneNumber" class="form-control reqField" id="PhoneNumber"
-               placeholder="(xx) xxxxx-xxxx" required oninvalid="setCustomValidity('You forgot to type your Phone Number!')" oninput="this.setCustomValidity('')"/>
-    </div>
-    <div class="mb-3">
-        <label for="Email1" class="form-label">Email address</label>
-        <input type="email" asp-for="Email" class="form-control reqField" id="Email" aria-describedby="emailHelp"
-               placeholder="Type your email" required oninvalid="setCustomValidity('You forgot to type your Email Address! E o dudu é bunda mole')" oninput="this.setCustomValidity('')"/>
-    </div>
-    <div class="mb-3">
-        <label for="Repassword" class="form-label">Password</label>
-        <input type="password" asp-for="Password" class="form-control reqField" id="Password"
-               placeholder="Type your password" required oninvalid="setCustomValidity('You forgot to type your Password!')" oninput="this.setCustomValidity('')"/>
-    </div>
-    <div class="mb-3">
-        <label for="Repassword" class="form-label">Repassword</label>
-        <input type="password" asp-for="Repassword" class="form-control reqField" id="Repassword"
-               placeholder="Retype your password" required oninvalid="setCustomValidity('You forgot to retype your password!')" oninput="this.setCustomValidity('')"/>
-    </div>
-    <div class="mb-3 form-check">
-    </div>
-    <button type="submit" class="btn btn-primary">Confirmar</button>
-    <a role="button" class="btn btn-primary"  asp-controller="Home" asp-action="Index">Cancelar</a>
-</form>
+<div class="d-flex justify-content-center align-items-center">
+    
+    <form asp-controller="Cadastro" asp-action="CreateUser" method="post" id="Form" class="card w-100 shadow" style="max-width:600px">
+        <div class="card-body d-flex flex-column gap-2" >
+            <h1 class="text-center">CADASTRO</h1>
+            <div >
+                <label asp-for="Name" class="form-label"></label>
+                <input type="text" asp-for="Name" class="form-control" id="Name" placeholder="Type your name" />
+            </div>
+            <div >
+                <label asp-for="Username" class="form-label"></label>
+                <input type="text" asp-for="Username" class="form-control " id="Username" placeholder="Type your username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div >
+                <label asp-for="PhoneNumber" class="form-label"></label>
+                <input type="text" asp-for="PhoneNumber" class="form-control reqField" id="PhoneNumber" placeholder="(xx) xxxxx-xxxx" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input type="email" asp-for="Email" class="form-control validateField" placeholder="Type your password" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div >
+                <label asp-for="Password" class="form-label"></label>
+                <input type="password" asp-for="Password" class="form-control validateField" placeholder="Type your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div >
+                <label asp-for ="Repassword" class="form-label"></label>
+                <input type="password" asp-for="Repassword" class="form-control validateField" id=" Repassword" placeholder="Retype your password"  />
+                <span asp-validation-for="Repassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <button id="Confirmar" type="submit" class="btn btn-primary">Confirmar</button>
+                <a role="button" class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancelar</a>
+            </div> 
+        </div>
+   
+        <script src="~/js/Cadastro.js"></script>
+    </form>
 
-<script src="~/js/Cadastro.js"></script>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

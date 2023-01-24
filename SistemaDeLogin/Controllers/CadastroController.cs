@@ -21,6 +21,9 @@ namespace SistemaDeLogin.Controllers
 
         [HttpPost]
         public IActionResult CreateUser(CreateUsuarioDto createUsuarioDto) {
+            if (!ModelState.IsValid)
+                return View("Index");
+
             Result user = _cadastroService.CreateUser(createUsuarioDto);
             if (user.IsSuccess)  return RedirectToAction("Index", "Login", new { area = "" });
             return View("Index");

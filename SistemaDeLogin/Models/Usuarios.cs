@@ -1,10 +1,8 @@
-﻿using SistemaDeLogin.Data.Dtos;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaDeLogin.Models
 {
-    [Table("Login")]
     public class Usuarios
     {
         //Criando Model, declarando quais dados serão passados e aplicando encapsulamento.
@@ -12,35 +10,28 @@ namespace SistemaDeLogin.Models
         //Repassar campos para CreateUsuarioDto;
         [Key]
         [Required]
-        [Column("Id")]
         [Display(Name = "Código")]
         public int Id { get; set; }
         
-        [Column("Nome")]
         [Display(Name = "Nome")]
         public string Name { get; set; } = string.Empty;
-        
-        [Required]
-        [Column("Email")]
+
+        [Required(ErrorMessage = "Looks like you forgort the username!")]
         [Display(Name = "Email")]
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Looks like you forgort the username!")]
-        [Column("Username")]
         [Display(Name = "Username")]
         public string Username { get; set; } = string.Empty;
 
-        [Column("PhoneNumber")]
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
-        [Column("Password")]
         [Display(Name = "Password")]
         public string Password { get; set; } = string.Empty;
 
         [Required]
-        [Column("Repassword")]
         [Display(Name = "Repassword")]
         public string Repassword { get; set; } = string.Empty;
     }
