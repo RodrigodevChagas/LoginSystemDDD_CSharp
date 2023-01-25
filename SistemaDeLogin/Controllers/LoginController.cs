@@ -23,9 +23,15 @@ namespace SistemaDeLogin.Controllers
         [HttpPost]
         public IActionResult LogaUsuario(LoginRequest request)
         {
-
+            if (!ModelState.IsValid) return View("Index");
+            
             Result resultado = loginService.LogaUsuario(request);
-            if (resultado.IsFailed) return Unauthorized(resultado.Errors);
+            if (resultado.IsFailed) 
+            {
+                ModelState.AddModelError("","");
+                return View("Index");
+            }
+            
             return Json(new { Msg = "Usuario logado com sucesso" });
         }
 

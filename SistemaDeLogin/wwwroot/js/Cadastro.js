@@ -1,15 +1,14 @@
 ﻿const botao = document.getElementById("Confirmar")
-const PhoneNumber = document.getElementById("PhoneNumber");
-const PhoneNumberRegex = /\+?(\(?d{2}\s?\))?((\(?\d{2}\)?)?\s?(\d{5})\s?-?\s?(\d{4}))/g;
-const Email = document.getElementById("Email");
-const EmailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
 const ReqFields = document.querySelectorAll(".validateField")
-
-console.log(Email);
+const PhoneNumber = document.getElementById("PhoneNumber");
+const Email = document.getElementById("Email");
+const spanEmailVal = document.querySelector(".validateEmail")
+const spanPhoneVal = document.querySelector(".validatePhoneNumber")
+const PhoneNumberRegex = /\+?(\(?d{2}\s?\))?((\(?\d{2}\)?)?\s?(\d{5})\s?-?\s?(\d{4}))/g;
+const EmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/ig;
 
 botao.addEventListener("click", (event) => {
 
-    event.preventDefault();
     validateFields();
     form.submit();
 });
@@ -17,12 +16,20 @@ botao.addEventListener("click", (event) => {
 function validateFields() {
 
     ReqFields.forEach(element => {
-        if (element.id === "PhoneNumber" && element.value.match(PhoneNumberRegex)) {
+        if (element.id === "PhoneNumber" && !element.value.match(PhoneNumberRegex)) {
 
-            console.log("coloca span")
+            spanPhoneVal.textContent = `Please, insert a valid phone number.'61957160436'`
+            event.preventDefault();
         }
+
+        if (element.id === "Email" && !element.value.match(EmailRegex)) {
+
+            spanEmailVal.textContent = `Please,insert a valid email. 'exampleemail@exemple.com'`
+            event.preventDefault();
+        }
+
+        if (element.id === "PhoneNumber" && element.value.match(PhoneNumberRegex)) spanPhoneVal.textContent = ``
+
+        if (element.id === "Email" && element.value.match(EmailRegex))  spanEmailVal.textContent = ``
     })
 }
-
-//Já consigo mapear quais campos estão vazios. Agora é validar!
-//

@@ -42,10 +42,13 @@ namespace SistemaDeLogin.Services
             var IdentityUser = _userManager
                 .Users
                 .FirstOrDefault(u => u.Id == request.Id);
+
+            if (IdentityUser == null) return Result.Fail("Usuario com campo(s) nulo(s)"); 
+                
             var IdentityResult = _userManager.ConfirmEmailAsync(IdentityUser, request.CodigoDeAtivacao).Result;
 
-            if (IdentityResult.Succeeded) return Result.Ok();
-            return Result.Fail("Falha ao ativar conta de usuario");
+
+            return IdentityResult.Succeeded ?  Result.Ok() :  Result.Fail("Falha ao ativar conta de usuario");
         }
     }
 }
