@@ -5,9 +5,6 @@ namespace SistemaDeLogin.Models
 {
     public class Usuarios
     {
-        //Criando Model, declarando quais dados serão passados e aplicando encapsulamento.
-        //Adicionar campos que quero preenchido. Ex: Email, Telefone.
-        //Repassar campos para CreateUsuarioDto;
         [Key]
         [Required]
         [Display(Name = "Código")]
@@ -16,11 +13,11 @@ namespace SistemaDeLogin.Models
         [Display(Name = "Nome")]
         public string Name { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Looks like you forgort the username!")]
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Looks like you forgort the username!")]
+        [Required]
         [Display(Name = "Username")]
         public string Username { get; set; } = string.Empty;
 
