@@ -24,18 +24,18 @@ namespace SistemaDeLogin.Controllers
         public IActionResult LogaUsuario(LoginRequest request)
         {
             if (!ModelState.IsValid) return View("Index");
-            
+
             Result resultado = loginService.LogaUsuario(request);
-            if (resultado.IsFailed) 
+            if (resultado.IsFailed)
             {
-                ModelState.AddModelError("","");
+                ModelState.AddModelError("", "");
                 return View("Index");
             }
-            
-            return Json(new { Msg = "Usuario logado com sucesso" });
+
+            return RedirectToAction("Index", "Home", resultado);
         }
 
-                //protected readonly ILoginRepositorio loginRepositorio;
+        //protected readonly ILoginRepositorio loginRepositorio;
 
 
 
