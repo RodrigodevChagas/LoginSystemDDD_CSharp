@@ -34,11 +34,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 });
 
-builder.Services.AddScoped<CadastroService, CadastroService>();
-builder.Services.AddScoped<LoginService, LoginService>();
-builder.Services.AddScoped<TokenService, TokenService>();
-builder.Services.AddScoped<LogoutService, LogoutService>();
-
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 

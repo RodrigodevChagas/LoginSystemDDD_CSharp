@@ -11,7 +11,6 @@ namespace SistemaDeLogin.Profiles
         {
          
             CreateMap<CreateUsuarioDto, Usuarios>();
-            CreateMap<Usuarios, IdentityUser<int>>();
         }
     }
 }
