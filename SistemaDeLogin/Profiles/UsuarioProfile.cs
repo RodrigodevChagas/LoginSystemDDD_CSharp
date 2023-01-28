@@ -9,7 +9,6 @@ namespace SistemaDeLogin.Profiles
     {
         public UsuarioProfile()
         {
-         
             CreateMap<CreateUsuarioDto, Usuarios>();
         }
     }
