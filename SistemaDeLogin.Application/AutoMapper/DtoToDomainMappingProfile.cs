@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using SistemaDeLogin.Domain.EntitiesIdentity;
+using SistemaDeLogin.AplicationIdentity.Dtos;
 
 namespace SistemaDeLogin.Application.AutoMapper
 {
-    public class DtoToDomainMappingProfile
+    public class DtoToDomainMappingProfile : Profile
     {
+        public DtoToDomainMappingProfile()
+        {
+            CreateMap<CreateUsuarioDto, Usuarios>();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace SistemaDeLogin.Models
+﻿namespace SistemaDeLogin.Domain.EntitiesIdentity
 {
     public class Token
     {
@@ -9,5 +9,6 @@
         }
 
         public string Value { get;}
+
     }
 }

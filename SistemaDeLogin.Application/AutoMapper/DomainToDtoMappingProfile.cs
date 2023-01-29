@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using SistemaDeLogin.Domain.EntitiesIdentity;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace SistemaDeLogin.Application.AutoMapper
 {
@@ -7,6 +10,7 @@ namespace SistemaDeLogin.Application.AutoMapper
         public DomainToDtoMappingProfile()
         {
             CreateMap<Usuarios, IdentityUser<int>>();
+
         }
     }
 }

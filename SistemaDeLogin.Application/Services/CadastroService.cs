@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using SistemaDeLogin.Data.Dtos;
+using SistemaDeLogin.AplicationIdentity.Dtos;
+using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Data.Requests;
 using SistemaDeLogin.Models;
 
-namespace SistemaDeLogin.Services
+namespace SistemaDeLogin.ApplicationIdentity.Services
 {
-    public class CadastroService
+    public class CadastroService : ICadastroService
     {
         private IMapper _mapper;
         private UserManager<IdentityUser<int>> _userManager;
