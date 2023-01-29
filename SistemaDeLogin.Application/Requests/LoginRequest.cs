@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SistemaDeLogin.Models
+namespace SistemaDeLogin.AplicationIdentity.Requests
 {
-    public class Login
+    public class LoginRequest
     {
         [Required(ErrorMessage = "Please, type your username!")]
         public string? Username { get; set; }

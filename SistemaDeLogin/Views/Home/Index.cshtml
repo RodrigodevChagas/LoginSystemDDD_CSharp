@@ -1,4 +1,4 @@
-﻿@using SistemaDeLogin.Data.Requests
+﻿@using SistemaDeLogin.AplicationIdentity.Requests
 @model LoginRequest;
 @{
     ViewData["Title"] = "Home Page";
@@ -6,5 +6,5 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Nome do doido: @LoginRequest.Username</p>
+    <p>Nome do doido: @Model.Username.</p>
 </div>

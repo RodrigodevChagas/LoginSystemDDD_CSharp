@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using SistemaDeLogin.Domain.EntitiesIdentity;
 
 namespace SistemaDeLogin.Application.Interfaces
 {
-    internal class ITokenServices
+    public interface ITokenServices
     {
+        Token CreateToken(IdentityUser<int> usuario);
     }
 }

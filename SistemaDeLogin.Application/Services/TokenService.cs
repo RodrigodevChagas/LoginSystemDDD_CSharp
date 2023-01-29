@@ -3,9 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using SistemaDeLogin.Models;
+using SistemaDeLogin.Domain.EntitiesIdentity;
 
-namespace SistemaDeLogin.Services
+namespace SistemaDeLogin.ApplicationIdentity.Services
 {
     public class TokenService
     {

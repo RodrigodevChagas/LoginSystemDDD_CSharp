@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentResults;
+using SistemaDeLogin.AplicationIdentity.Requests;
 
 namespace SistemaDeLogin.Application.Interfaces
 {
-    internal class ILoginService
+    public interface ILoginService
     {
+        Result LogaUsuario(LoginRequest request);
+        Result LogoutUsuario();
     }
 }

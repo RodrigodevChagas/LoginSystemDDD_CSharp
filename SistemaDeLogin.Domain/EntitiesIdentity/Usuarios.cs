@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace SistemaDeLogin.Models
+namespace SistemaDeLogin.Domain.EntitiesIdentity
 {
     public class Usuarios
     {

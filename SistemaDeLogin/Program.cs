@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SistemaDeLogin.Configurations;
 using SistemaDeLogin.Data;
-using SistemaDeLogin.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDependencyInjectionConfiguration();
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapperConfiguration();
+
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
@@ -34,7 +40,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 });
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

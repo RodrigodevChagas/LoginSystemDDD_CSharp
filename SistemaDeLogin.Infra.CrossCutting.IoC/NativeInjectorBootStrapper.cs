@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SistemaDeLogin.Services;
 using MediatR;
+using SistemaDeLogin.ApplicationIdentity.Services;
 
 namespace SistemaDeLogin.Infra.CrossCutting.IoC
 {

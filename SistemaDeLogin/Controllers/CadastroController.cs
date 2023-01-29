@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using SistemaDeLogin.Data.Dtos;
-using SistemaDeLogin.Services;
+using SistemaDeLogin.AplicationIdentity.Dtos;
+using SistemaDeLogin.ApplicationIdentity.Services;
 
 namespace SistemaDeLogin.Controllers
 {

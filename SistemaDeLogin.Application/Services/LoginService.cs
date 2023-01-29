@@ -1,15 +1,14 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using SistemaDeLogin.Data.Requests;
-using SistemaDeLogin.Models;
-using SistemaDeLogin.Services;
+using SistemaDeLogin.AplicationIdentity.Requests;
+using SistemaDeLogin.Domain.EntitiesIdentity;
 
-namespace SistemaDeLogin.Services
+namespace SistemaDeLogin.ApplicationIdentity.Services
 {
     public class LoginService
     {
-        private SignInManager<IdentityUser<int>> _signInManager;
-        private TokenService _tokenService;
+        private readonly SignInManager<IdentityUser<int>> _signInManager;
+        private readonly TokenService _tokenService;
 
         public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService)
         {
@@ -32,8 +31,6 @@ namespace SistemaDeLogin.Services
         }
         public Result LogoutUsuario()
         {
-
-
             var resultadoIdentity = _signInManager.SignOutAsync();
             if (resultadoIdentity.IsCompletedSuccessfully) return Result.Ok();
             return Result.Fail("Logout Falhou");
