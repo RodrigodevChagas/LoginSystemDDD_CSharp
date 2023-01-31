@@ -31,8 +31,8 @@ namespace SistemaDeLogin.Controllers
                 ModelState.AddModelError("", "");
                 return View("Index");
             }
-
-            return RedirectToAction("Index", "Home", resultado);
+            
+            return RedirectToAction("Index", "Home", request);
         }
 
         //protected readonly ILoginRepositorio loginRepositorio;

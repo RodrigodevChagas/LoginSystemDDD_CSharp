@@ -29,9 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 - CrossCutting", "{5306BBA9-E32F-4195-BC28-3A72D7F37A6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeLogin.Infra.Data", "SistemaDeLogin.Infra.Data\SistemaDeLogin.Infra.Data.csproj", "{395331C8-AB1E-4B0F-BF17-81BED9306584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaDeLogin.Infra.Data", "SistemaDeLogin.Infra.Data\SistemaDeLogin.Infra.Data.csproj", "{395331C8-AB1E-4B0F-BF17-81BED9306584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeLogin.Domain", "SistemaDeLogin.Domain\SistemaDeLogin.Domain.csproj", "{254937D3-6853-4252-8CD1-541FC467542A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaDeLogin.Domain", "SistemaDeLogin.Domain\SistemaDeLogin.Domain.csproj", "{254937D3-6853-4252-8CD1-541FC467542A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeLogin.Infra.DataIdentity", "SistemaDeLogin.Infra.DataIdentity\SistemaDeLogin.Infra.DataIdentity.csproj", "{CC09451F-6CD9-4DAE-8421-D0C10F9ADD3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{254937D3-6853-4252-8CD1-541FC467542A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{254937D3-6853-4252-8CD1-541FC467542A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{254937D3-6853-4252-8CD1-541FC467542A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC09451F-6CD9-4DAE-8421-D0C10F9ADD3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC09451F-6CD9-4DAE-8421-D0C10F9ADD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC09451F-6CD9-4DAE-8421-D0C10F9ADD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC09451F-6CD9-4DAE-8421-D0C10F9ADD3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{5306BBA9-E32F-4195-BC28-3A72D7F37A6F} = {87711C26-0627-4EF9-BFC0-F9209E84CCDC}
 		{395331C8-AB1E-4B0F-BF17-81BED9306584} = {21387E28-ED09-4BFD-9927-5E8A6C6DC72B}
 		{254937D3-6853-4252-8CD1-541FC467542A} = {DF11596E-B6ED-42E6-BB94-7BB02B547604}
+		{CC09451F-6CD9-4DAE-8421-D0C10F9ADD3A} = {21387E28-ED09-4BFD-9927-5E8A6C6DC72B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {661B787C-695B-4309-954F-D9CAE81C11EE}

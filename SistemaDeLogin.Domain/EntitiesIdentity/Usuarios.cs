@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaDeLogin.Domain.EntitiesIdentity
 {
@@ -8,6 +9,7 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
         [Key]
         [Required]
         [Display(Name = "Código")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
         [Display(Name = "Nome")]
@@ -23,13 +25,5 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
 
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; } = string.Empty;
-
-        [Required]
-        [Display(Name = "Password")]
-        public string Password { get; set; } = string.Empty;
-
-        [Required]
-        [Display(Name = "Repassword")]
-        public string Repassword { get; set; } = string.Empty;
     }
 }
