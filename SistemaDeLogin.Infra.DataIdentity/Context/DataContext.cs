@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace SistemaDeLogin.Data
+namespace SistemaDeLogin.Infra.DataIdentity.Context
 {
     public class DataContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
     {

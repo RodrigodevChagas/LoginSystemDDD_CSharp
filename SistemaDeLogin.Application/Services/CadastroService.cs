@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SistemaDeLogin.AplicationIdentity.Dtos;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Data.Requests;
-using SistemaDeLogin.Models;
+using SistemaDeLogin.Domain.EntitiesIdentity;
+using SistemaDeLogin.Infra.Data.Context;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
@@ -12,17 +14,20 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
     {
         private IMapper _mapper;
         private UserManager<IdentityUser<int>> _userManager;
+        private DataContextDashBoard dbSet;
 
-        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager)
+        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager, DataContextDashBoard dbSet)
         {
             _mapper = mapper;
             _userManager = userManager;
+            this.dbSet = dbSet;
         }
 
         public Result CreateUser(CreateUsuarioDto createUsuarioDto)
         {
             
             Usuarios usuario = _mapper.Map<Usuarios>(createUsuarioDto);
+            
 
             IdentityUser<int> usuarioIdentity = _mapper.Map<IdentityUser<int>>(usuario);
             
@@ -30,6 +35,8 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
 
             if (ResultadoIdentity.Result.Succeeded) {
 
+                dbSet.Users.Add(usuario);
+                dbSet.SaveChanges();
                 var code =  _userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentity).Result;
                 return Result.Ok()
                     .WithSuccess(code);

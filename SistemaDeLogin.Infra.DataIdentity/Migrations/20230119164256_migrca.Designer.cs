@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SistemaDeLogin.Data;
+using SistemaDeLogin.Infra.DataIdentity.Context;
 
 #nullable disable
 
 namespace SistemaDeLogin.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230120001234_migracaoComNome")]
-    partial class migracaoComNome
+    [Migration("20230119164256_migrca")]
+    partial class migrca
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

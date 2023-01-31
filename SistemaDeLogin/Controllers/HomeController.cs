@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.Models;
 using System.Diagnostics;
 
@@ -13,9 +14,9 @@ namespace SistemaDeLogin.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(LoginRequest request)
         {
-            return View();
+            return View(request);
         }
 
         public IActionResult Privacy()

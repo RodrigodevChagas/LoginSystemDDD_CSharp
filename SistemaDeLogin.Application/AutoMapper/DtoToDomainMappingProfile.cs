@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.AplicationIdentity.Dtos;
+using SistemaDeLogin.ApplicationIdentity.Dtos;
 
 namespace SistemaDeLogin.Application.AutoMapper
 {
@@ -9,6 +10,7 @@ namespace SistemaDeLogin.Application.AutoMapper
         public DtoToDomainMappingProfile()
         {
             CreateMap<CreateUsuarioDto, Usuarios>();
+            CreateMap<UserDto, Usuarios>();
         }
     }
 }
