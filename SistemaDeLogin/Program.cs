@@ -9,7 +9,6 @@ builder.Services.AddDependencyInjectionConfiguration();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddWebAppIdentityConfig(builder.Configuration);
 
 builder.Services.AddAutoMapperConfiguration();
@@ -29,6 +28,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

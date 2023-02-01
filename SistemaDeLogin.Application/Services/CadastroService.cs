@@ -6,21 +6,21 @@ using SistemaDeLogin.AplicationIdentity.Dtos;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Data.Requests;
 using SistemaDeLogin.Domain.EntitiesIdentity;
-using SistemaDeLogin.Infra.Data.Context;
+using SistemaDeLogin.Infra.DataIdentity.Context;
+using System.Collections.Generic;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
     public class CadastroService : ICadastroService
     {
-        private IMapper _mapper;
-        private UserManager<IdentityUser<int>> _userManager;
-        private DataContextDashBoard dbSet;
-
-        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager, DataContextDashBoard dbSet)
+        private readonly IMapper _mapper;
+        private readonly UserManager<IdentityUser<int>> _userManager;
+        private readonly DataContext _db;
+        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager, DataContext db)
         {
             _mapper = mapper;
             _userManager = userManager;
-            this.dbSet = dbSet;
+            _db = db;
         }
 
         public Result CreateUser(CreateUsuarioDto createUsuarioDto)
@@ -28,20 +28,18 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
             
             Usuarios usuario = _mapper.Map<Usuarios>(createUsuarioDto);
             
-
             IdentityUser<int> usuarioIdentity = _mapper.Map<IdentityUser<int>>(usuario);
             
             Task<IdentityResult> ResultadoIdentity = _userManager.CreateAsync(usuarioIdentity, createUsuarioDto.Password);
 
-            if (ResultadoIdentity.Result.Succeeded) {
-
-                dbSet.Users.Add(usuario);
-                dbSet.SaveChanges();
+            if (ResultadoIdentity.Result.Succeeded) 
+            {
+                _db.Users.Add(usuario);
+                _db.SaveChanges();
                 var code =  _userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentity).Result;
                 return Result.Ok()
                     .WithSuccess(code);
             } 
-            
             return Result.Fail("Falha ao cadastrar usuário");
         }
 
@@ -54,7 +52,6 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
             if (IdentityUser == null) return Result.Fail("Usuario com campo(s) nulo(s)"); 
                 
             var IdentityResult = _userManager.ConfirmEmailAsync(IdentityUser, request.CodigoDeAtivacao).Result;
-
 
             return IdentityResult.Succeeded ?  Result.Ok() :  Result.Fail("Falha ao ativar conta de usuario");
         }

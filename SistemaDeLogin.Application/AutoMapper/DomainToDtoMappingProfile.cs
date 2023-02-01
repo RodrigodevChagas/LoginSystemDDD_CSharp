@@ -10,7 +10,6 @@ namespace SistemaDeLogin.Application.AutoMapper
         public DomainToDtoMappingProfile()
         {
             CreateMap<Usuarios, IdentityUser<int>>();
-
         }
     }
 }
