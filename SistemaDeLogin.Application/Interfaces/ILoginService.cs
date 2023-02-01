@@ -5,7 +5,7 @@ namespace SistemaDeLogin.Application.Interfaces
 {
     public interface ILoginService
     {
-        Result LogaUsuario(LoginRequest request);
-        Result LogoutUsuario();
+        Task<Result> LoginUser(LoginRequest request);
+        Result LogoutUser();
     }
 }

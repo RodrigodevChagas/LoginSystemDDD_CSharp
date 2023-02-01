@@ -1,4 +1,5 @@
-﻿using FluentResults;
+﻿using Azure.Core;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Services;
@@ -14,8 +15,9 @@ namespace SistemaDeLogin.Controllers
             this.loginService = loginService;
         }
         
-        public IActionResult Index() { 
-        
+        public IActionResult Index() {
+            if (User.Identity != null && User.Identity.IsAuthenticated) { return RedirectToAction("Index", "Home"); }
+
             return View();
         }
 
@@ -25,65 +27,25 @@ namespace SistemaDeLogin.Controllers
         {
             if (!ModelState.IsValid) return View("Index");
 
-            Result resultado = loginService.LogaUsuario(request);
-            if (resultado.IsFailed)
+            Task<Result> result = loginService.LoginUser(request);
+            if (result.Result.IsFailed)
             {
                 ModelState.AddModelError("", "");
                 return View("Index");
             }
-            
+   
             return RedirectToAction("Index", "Home", request);
         }
 
-        //protected readonly ILoginRepositorio loginRepositorio;
+        public IActionResult Logout() {
 
+            Result result = loginService.LogoutUser();
 
+            if (result.IsFailed)
+                return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
 
-        //    [HttpPost]
-        //    public IActionResult LogaUsuario(LoginRequest request)
-        //    {
-
-        //        Result resultado = _loginService.LogaUsuario(request);
-        //        if (resultado.IsFailed) return Unauthorized(resultado.Errors);
-        //        return Ok(resultado.Successes.First());
-        //    }
-
-        //    //[HttpPost]
-        //    //public async Task<IActionResult> Logar(string username, string senha) {
-
-        //    //    var user = loginRepositorio.BuscaUsuario(username, senha);
-        //    //    if (user == null) return Json(new { Msg = "Usuario nao logado" });
-
-        //    //    int userId = user.Id;
-        //    //    string userUsername = user.Username!;
-
-        //    //    List<Claim> direitosDeAcesso = new List<Claim> { 
-        //    //        new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-        //    //        new Claim(ClaimTypes.Name, userUsername),
-        //    //    };
-
-        //    //    var identity = new ClaimsIdentity(direitosDeAcesso, "Identity.Login");
-        //    //    var userPrincipal = new ClaimsPrincipal(new[] { identity });
-
-        //    //    await HttpContext.SignInAsync(userPrincipal,
-        //    //        new AuthenticationProperties 
-        //    //        {
-        //    //            IsPersistent = false,
-        //    //            ExpiresUtc = DateTime.Now.AddHours(2),
-        //    //        });
-
-        //    //    return Json(new { Msg = "Usuario logado com sucesso" });
-
-        //    //}
-
-        //    public async Task<IActionResult> Logout() {
-
-        //        if (User.Identity != null && User.Identity.IsAuthenticated) {
-        //            await HttpContext.SignOutAsync();
-        //        }
-        //        return RedirectToAction("Index", "Login");
-
-        //    }
+        }
 
     }
 }
