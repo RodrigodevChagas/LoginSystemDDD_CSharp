@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaDeLogin.Infra.DataIdentity.Context;
 
 #nullable disable
-
 namespace SistemaDeLogin.Infra.DataIdentity.Migrations
 {
     [DbContext(typeof(DataContext))]
