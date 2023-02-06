@@ -1,21 +1,21 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SistemaDeLogin.Domain.EntitiesIdentity
+namespace SistemaDeLogin.ApplicationIdentity.ViewModels
 {
-    public class Usuarios
+    public class UserViewModel
     {
-        public Usuarios(string name)
+        public UserViewModel(string username = "")
         {
-            Username = name;
+            Username = username;
         }
         [Key]
-        [Required]
-        [Display(Name = "Código")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
+
         [Display(Name = "Nome")]
         public string Name { get; set; } = string.Empty;
 
@@ -29,6 +29,5 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
 
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; } = string.Empty;
-        
     }
 }

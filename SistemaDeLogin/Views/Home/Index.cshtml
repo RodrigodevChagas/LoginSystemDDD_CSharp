@@ -1,5 +1,6 @@
-﻿@using SistemaDeLogin.Domain.EntitiesIdentity;
+@using SistemaDeLogin.Domain.EntitiesIdentity;
 @model Usuarios
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,10 +8,11 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>
-        @if (Model != null)
-        {
-            @Model.Username
-        }
-    </p>
-    <a role="button" asp-controller="Login" asp-action="Logout">Sair fora</a>
+    @if(Model != null)
+    {
+      Model.Username
+    }
+     </p>
+    
+    <a class="btn btn-danger" role="button" asp-controller="Login" asp-action="Logout">Sair fora</a>
 </div>

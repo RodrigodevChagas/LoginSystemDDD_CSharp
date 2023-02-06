@@ -13,7 +13,6 @@ namespace SistemaDeLogin.Infra.CrossCutting.IoC
             services.AddScoped<LoginService, LoginService>();
             services.AddScoped<TokenService, TokenService>();
             services.AddScoped<UserRepository, UserRepository>();
-
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
         }
     }

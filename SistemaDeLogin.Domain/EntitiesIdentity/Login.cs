@@ -10,5 +10,6 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
         [Required(ErrorMessage = "Please, type your password!")]
         public string? Password { get; set; }
 
+
     }
 }
