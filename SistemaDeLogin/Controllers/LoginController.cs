@@ -1,18 +1,24 @@
-﻿using Azure.Core;
+﻿using AutoMapper;
+using Azure.Core;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Services;
+using SistemaDeLogin.Domain.EntitiesIdentity;
+using SistemaDeLogin.Infra.Data.Repository;
 
 namespace SistemaDeLogin.Controllers
 {
     public class LoginController : Controller {
 
         private readonly LoginService loginService;
+        private readonly LoginRepository loginRepository;
 
-        public LoginController(LoginService loginService)
+
+        public LoginController(LoginService loginService, LoginRepository loginRepository)
         {
             this.loginService = loginService;
+            this.loginRepository = loginRepository;
         }
         
         public IActionResult Index() {
@@ -28,6 +34,7 @@ namespace SistemaDeLogin.Controllers
             if (!ModelState.IsValid) return View("Index");
 
             Task<Result> result = loginService.LoginUser(request);
+
             if (result.Result.IsFailed)
             {
                 ModelState.AddModelError("", "");
