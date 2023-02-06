@@ -12,13 +12,11 @@ namespace SistemaDeLogin.Controllers
     public class LoginController : Controller {
 
         private readonly LoginService loginService;
-        private readonly LoginRepository loginRepository;
 
 
-        public LoginController(LoginService loginService, LoginRepository loginRepository)
+        public LoginController(LoginService loginService)
         {
             this.loginService = loginService;
-            this.loginRepository = loginRepository;
         }
         
         public IActionResult Index() {

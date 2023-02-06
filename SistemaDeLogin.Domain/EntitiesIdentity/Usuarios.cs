@@ -6,10 +6,6 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
 {
     public class Usuarios
     {
-        public Usuarios(string name)
-        {
-            Username = name;
-        }
         [Key]
         [Required]
         [Display(Name = "Código")]

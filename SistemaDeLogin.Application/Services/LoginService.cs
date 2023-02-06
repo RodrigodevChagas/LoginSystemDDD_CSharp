@@ -16,14 +16,12 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
         private readonly SignInManager<IdentityUser<int>> _signInManager;
         private readonly TokenService _tokenService;
         private readonly IMapper _mapper;
-        private readonly LoginRepository _loginRepository;
 
-        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService, LoginRepository loginRepository, IMapper mapper)
+        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService, IMapper mapper)
         {
             _signInManager = signInManager;
             _tokenService = tokenService;
             _mapper = mapper;
-            _loginRepository = loginRepository;
         }
         
         public async Task<Result> LoginUser(LoginRequest request)
@@ -45,12 +43,6 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
             return Result.Fail("Login Failed");
         }
 
-        public UserViewModel SearchUserInfo(UserViewModel user) 
-        {
-            var map = _mapper.Map<Usuarios>(user);
-            UserViewModel mapT = _mapper.Map<UserViewModel>(_loginRepository.SearchUserInfo(map));
-            return mapT;
-        }
         public Result LogoutUser()
         {
             var resultadoIdentity = _signInManager.SignOutAsync();
