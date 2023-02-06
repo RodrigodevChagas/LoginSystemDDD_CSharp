@@ -1,8 +1,6 @@
-﻿using FluentResults;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
-using SistemaDeLogin.ApplicationIdentity.Services;
-using SistemaDeLogin.ApplicationIdentity.ViewModels;
 using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.Infra.Data.Repository;
 using SistemaDeLogin.Models;
@@ -13,24 +11,26 @@ namespace SistemaDeLogin.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly LoginService loginService;
+        private readonly UserRepository userRepository;
 
-        public HomeController(ILogger<HomeController> logger, LoginService loginService)
+
+        public HomeController(ILogger<HomeController> logger, UserRepository userRepository)
         {
             _logger = logger;
-            this.loginService = loginService;
+            this.userRepository = userRepository;
         }
 
         public IActionResult Index(LoginRequest request)
         {
-            UserViewModel user = new UserViewModel(request.Username!);
-            if (User.Identity != null && User.Identity.IsAuthenticated)
+            if(User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name)) 
             {
-                user.Username = User.Identity.Name!;
+                Usuarios user = new Usuarios();
+                user.Username = request.Username != null ? request.Username : User.Identity.Name;
+                user = userRepository.GetUserInfo(user);
+                return View(user);
             }
-            UserViewModel pegaInfo = loginService.SearchUserInfo(user);
 
-            return View(pegaInfo);
+            return RedirectToAction("Index", "Login");
         }
 
         public IActionResult Privacy()
