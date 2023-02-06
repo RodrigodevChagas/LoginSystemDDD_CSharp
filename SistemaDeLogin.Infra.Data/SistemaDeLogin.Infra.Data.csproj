@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SistemaDeLogin.Domain\SistemaDeLogin.Domain.csproj" />
+    <ProjectReference Include="..\SistemaDeLogin.Infra.DataIdentity\SistemaDeLogin.Infra.DataIdentity.csproj" />
   </ItemGroup>
 
 </Project>
