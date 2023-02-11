@@ -23,6 +23,9 @@ namespace SistemaDeLogin.Infra.Data.Repository
         public Usuarios GetUserInfo(Usuarios user)
         {
             var userInfo = DbSet.FirstOrDefault(x => x.Username == user.Username);
+            var userInfoTwo = from users in DbSet
+                              where user.Username == users.Name
+                              select users;
             
             return userInfo != null? userInfo : new Usuarios();
         }
