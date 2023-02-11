@@ -25,6 +25,16 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
 
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; } = string.Empty;
+
+        [NotMapped]
+        [Display(Name = "ProfilePicFile")]
+        public string ProfilePicFile { get; set; } = string.Empty;
         
+        [NotMapped]
+        [Display(Name = "CoverPicFile")]
+        public string CoverPicFile { get; set; } = string.Empty;
+       
+        public string CoverPic { get; set; } = string.Empty;
+        public string ProfilePic { get; set; } = string.Empty;
     }
 }
