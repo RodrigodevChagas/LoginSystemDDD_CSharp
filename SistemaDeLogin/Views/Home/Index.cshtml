@@ -8,9 +8,16 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>
-    @if(Model != null)
+    @if(Model != null){
         @Model.Username;
+    }
     </p>
     
     <a class="btn btn-danger" role="button" asp-controller="Login" asp-action="Logout">Sair fora</a>
 </div>
+<form asp-action="UploadImage" enctype="multipart/form-data">
+    <label asp-for="ProfilePicFile" class="control-label"></label>
+    <input asp-for="ProfilePicFile"/>
+    <label asp-for="CoverPicFile" class="control-label"></label>
+    <input asp-for="CoverPicFile" />
+</form>
