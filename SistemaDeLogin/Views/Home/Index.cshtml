@@ -22,10 +22,16 @@
                 <button type="button" class="btn btn-info btnModal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil text-black"></i></button>
             </div>
         </div>
+
+        <h1 class="display-4 mb-4">@Model.Username</h1>
+    
+        <a class="btn btn-danger" role="button" asp-controller="Login" asp-action="Logout">Logout</a>
+        
         
         <div class="modal fade bg-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <!-- Modal -->
             <div class="modal-dialog bg-black" role="document">
+                
                 <div class="modal-content bg-black">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Change profile picture</h5>
@@ -33,10 +39,11 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form asp-action="PictureManagement" enctype="multipart/form-data" class="m-4">
+                    <form asp-action="PictureManagement" enctype="multipart/form-data" class="m-4" method="post">
                         <div class="modal-body form-group">
                                 <div class="form-group mb-2">
                                     <label class="control-label"></label>
+                                    <p>@Model.Username, deseja trocar sua foto?</p>
                                     <input asp-for="ProfilePicFile" accept="image/*" />
                                 </div>
                         </div>
@@ -48,11 +55,6 @@
                 </div>
             </div>
         </div>
-
-        <h1 class="display-4 mb-4">@Model.Username</h1>
-    
-        <a class="btn btn-danger" role="button" asp-controller="Login" asp-action="Logout">Logout</a>
-        
     }
     
 </div>
