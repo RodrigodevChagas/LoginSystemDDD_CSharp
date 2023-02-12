@@ -39,4 +39,8 @@
     <ProjectReference Include="..\SistemaDeLogin.Infra.DataIdentity\SistemaDeLogin.Infra.DataIdentity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Image\" />
+  </ItemGroup>
+
 </Project>

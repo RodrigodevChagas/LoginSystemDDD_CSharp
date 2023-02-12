@@ -5,19 +5,54 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>
+<div class="text-center text-white">
     @if(Model != null){
-        @Model.Username;
-    }
-    </p>
+
+        <div>
+            @if (!string.IsNullOrEmpty(Model.ProfilePic))
+            {
+                <img src="@("~/image/" + Model.ProfilePic)" asp-append-version="true" class="profilePic"/>
+            }
+            else
+            {
+                <img src="~/Image/genericPicture.jpg" asp-append-version="true" class="profilePic"/>
+            }
+            <div class="">
+                    <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info btnModal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil text-black"></i></button>
+            </div>
+        </div>
+        
+        <div class="modal fade bg-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Modal -->
+            <div class="modal-dialog bg-black" role="document">
+                <div class="modal-content bg-black">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change profile picture</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form asp-action="PictureManagement" enctype="multipart/form-data" class="m-4">
+                        <div class="modal-body form-group">
+                                <div class="form-group mb-2">
+                                    <label class="control-label"></label>
+                                    <input asp-for="ProfilePicFile" accept="image/*" />
+                                </div>
+                        </div>
+                        <div class="modal-footer form-group">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" asp-action="PictureManagement" asp-controller="Home" class="btn btn-primary" value="Submit"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="display-4 mb-4">@Model.Username</h1>
     
-    <a class="btn btn-danger" role="button" asp-controller="Login" asp-action="Logout">Sair fora</a>
+        <a class="btn btn-danger" role="button" asp-controller="Login" asp-action="Logout">Logout</a>
+        
+    }
+    
 </div>
-<form asp-action="UploadImage" enctype="multipart/form-data">
-    <label asp-for="ProfilePicFile" class="control-label"></label>
-    <input asp-for="ProfilePicFile"/>
-    <label asp-for="CoverPicFile" class="control-label"></label>
-    <input asp-for="CoverPicFile" />
-</form>

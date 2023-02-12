@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.profilePic {
+    width: 250px;
+    height: 250px;
+}
+.btnModal, .profilePic {
+    border-radius: 100%;
+}
