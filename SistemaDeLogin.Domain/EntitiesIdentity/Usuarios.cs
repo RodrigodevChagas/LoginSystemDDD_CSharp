@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,12 +28,10 @@ namespace SistemaDeLogin.Domain.EntitiesIdentity
         public string PhoneNumber { get; set; } = string.Empty;
 
         [NotMapped]
-        [Display(Name = "ProfilePicFile")]
-        public string ProfilePicFile { get; set; } = string.Empty;
+        public IFormFile? ProfilePicFile { get; set; }
         
         [NotMapped]
-        [Display(Name = "CoverPicFile")]
-        public string CoverPicFile { get; set; } = string.Empty;
+        public IFormFile? CoverPicFile { get; set; }
        
         public string CoverPic { get; set; } = string.Empty;
         public string ProfilePic { get; set; } = string.Empty;
