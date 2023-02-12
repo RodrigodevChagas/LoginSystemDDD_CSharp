@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentResults;
+using Microsoft.EntityFrameworkCore;
 using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.Infra.DataIdentity.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +31,16 @@ namespace SistemaDeLogin.Infra.Data.Repository
             //                   select users;
             
             return userInfo != null? userInfo : new Usuarios();
+        }
+
+        public Result UploadProfilePic(Usuarios user, string path) 
+        {
+            user = GetUserInfo(user);
+            user.ProfilePic = path;
+            DbSet.Update(user);
+            dataContext.SaveChanges();
+            
+            return Result.Ok();
         }
     }
 }
