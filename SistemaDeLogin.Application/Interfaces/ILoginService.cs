@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using SistemaDeLogin.AplicationIdentity.Requests;
 
-namespace SistemaDeLogin.Application.Interfaces
+namespace SistemaDeLogin.ApplicationIdentity.Interfaces
 {
     public interface ILoginService
     {

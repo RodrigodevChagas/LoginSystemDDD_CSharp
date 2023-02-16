@@ -4,11 +4,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using SistemaDeLogin.Domain.EntitiesIdentity;
+using SistemaDeLogin.Application.Interfaces;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
-    public class TokenService
+    public class TokenService : ITokenServices
     {
+        
         public Token CreateToken(IdentityUser<int> usuario) {
 
             Claim[] direitosUsuario = new Claim[] {
@@ -16,7 +18,7 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
                 new Claim("username", usuario.UserName),
                 new Claim("id", usuario.Id.ToString())
             };
-
+            
             var chave = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes("0asdjas09djsa09djasdjsadajsd09asjd09sajcnzxn")
                 );

@@ -1,5 +1,6 @@
 using SistemaDeLogin.Configurations;
 using SistemaDeLogin.Infra.CrossCutting.Identity;
+using SistemaDeLogin.Infra.CrossCutting.Identity.ConfigEmail;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddWebAppIdentityConfig(builder.Configuration);
 
 builder.Services.AddAutoMapperConfiguration();
+var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfig>();
+builder.Services.AddSingleton(emailConfig);
 
 var app = builder.Build();
 
