@@ -12,12 +12,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SistemaDeLogin.Aplication\SistemaDeLogin.Aplication.csproj" />
     <ProjectReference Include="..\SistemaDeLogin.Domain\SistemaDeLogin.Domain.csproj" />
+    <ProjectReference Include="..\SistemaDeLogin.Infra.CrossCutting.Identity\SistemaDeLogin.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\SistemaDeLogin.Infra.DataIdentity\SistemaDeLogin.Infra.DataIdentity.csproj" />
     <ProjectReference Include="..\SistemaDeLogin.Infra.Data\SistemaDeLogin.Infra.Data.csproj" />
   </ItemGroup>

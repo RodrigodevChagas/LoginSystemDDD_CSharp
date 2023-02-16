@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using FluentResults;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SistemaDeLogin.AplicationIdentity.Requests;
-using SistemaDeLogin.Application.Interfaces;
-using SistemaDeLogin.ApplicationIdentity.ViewModels;
+using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Domain.EntitiesIdentity;
-using SistemaDeLogin.Infra.Data.Repository;
-using System.Security.Claims;
+using SistemaDeLogin.Infra.CrossCutting.Identity.ConfigEmail;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
@@ -15,15 +12,15 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
     {
         private readonly SignInManager<IdentityUser<int>> _signInManager;
         private readonly TokenService _tokenService;
-        private readonly IMapper _mapper;
+        private readonly EmailServices _emailService;
 
-        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService, IMapper mapper)
+        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService, EmailServices emailService)
         {
             _signInManager = signInManager;
             _tokenService = tokenService;
-            _mapper = mapper;
+            _emailService = emailService;
         }
-        
+
         public async Task<Result> LoginUser(LoginRequest request)
         {
             var resultadoIdentity = _signInManager.PasswordSignInAsync(request.Username, request.Password, true, false);
@@ -37,6 +34,10 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
                 await _signInManager.SignInAsync(identityUser, true);
                 var userPrincial =  _signInManager.CreateUserPrincipalAsync(identityUser);
 
+                var message = new Message(new string[] { "rodrigueschagas@bne.com.br" }, "Test", $"{token.Value}");
+
+                _emailService.SendEmail(message);
+            
                 return Result.Ok().WithSuccess(token.Value);
             }
 
