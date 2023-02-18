@@ -1,21 +1,15 @@
-﻿using Azure.Core;
-using FluentResults;
+﻿using FluentResults;
+using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Domain.EntitiesIdentity;
-using SistemaDeLogin.Infra.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SistemaDeLogin.Infra.Data.Interface;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(UserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

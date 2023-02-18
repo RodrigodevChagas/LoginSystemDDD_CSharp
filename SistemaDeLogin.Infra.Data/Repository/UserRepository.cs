@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.EntityFrameworkCore;
 using SistemaDeLogin.Domain.EntitiesIdentity;
+using SistemaDeLogin.Infra.Data.Interface;
 using SistemaDeLogin.Infra.DataIdentity.Context;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SistemaDeLogin.Infra.Data.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         protected readonly DataContext dataContext;
         protected readonly DbSet<Usuarios> DbSet;

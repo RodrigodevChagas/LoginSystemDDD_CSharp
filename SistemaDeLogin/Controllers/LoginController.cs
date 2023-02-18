@@ -3,6 +3,7 @@ using Azure.Core;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
+using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.ApplicationIdentity.Services;
 using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.Infra.Data.Repository;
@@ -11,10 +12,10 @@ namespace SistemaDeLogin.Controllers
 {
     public class LoginController : Controller {
 
-        private readonly LoginService loginService;
+        private readonly ILoginService loginService;
 
 
-        public LoginController(LoginService loginService)
+        public LoginController(ILoginService loginService)
         {
             this.loginService = loginService;
         }

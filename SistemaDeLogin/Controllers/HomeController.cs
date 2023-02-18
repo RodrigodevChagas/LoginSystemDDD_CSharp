@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
-using SistemaDeLogin.ApplicationIdentity.Services;
+using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Domain.EntitiesIdentity;
-using SistemaDeLogin.Infra.Data.Repository;
+using SistemaDeLogin.Infra.Data.Interface;
 using SistemaDeLogin.Models;
 using System.Diagnostics;
 
@@ -10,12 +10,12 @@ namespace SistemaDeLogin.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserRepository userRepository;
-        private readonly UserService userService;
+        private readonly IUserRepository userRepository;
+        private readonly IUserService userService;
         private readonly IWebHostEnvironment _hostEnvironment;
 
 
-        public HomeController(UserRepository userRepository, IWebHostEnvironment hostEnvironment, UserService userService) 
+        public HomeController(IUserRepository userRepository, IWebHostEnvironment hostEnvironment, IUserService userService) 
         {
 
             this.userRepository = userRepository;

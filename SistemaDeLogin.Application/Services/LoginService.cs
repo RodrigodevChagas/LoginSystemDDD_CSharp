@@ -12,9 +12,9 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
     {
         private readonly SignInManager<IdentityUser<int>> _signInManager;
         private readonly TokenService _tokenService;
-        private readonly EmailServices _emailService;
+        private readonly IEmailServices _emailService;
 
-        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService, EmailServices emailService)
+        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService, IEmailServices emailService)
         {
             _signInManager = signInManager;
             _tokenService = tokenService;
