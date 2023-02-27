@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using FluentResults;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
@@ -31,13 +34,17 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
                     .FirstOrDefault(identidade => identidade.NormalizedUserName == request.Username.ToUpper())!;
                 Token token = _tokenService.CreateToken(identityUser);
 
-                await _signInManager.SignInAsync(identityUser, true);
                 var userPrincial =  _signInManager.CreateUserPrincipalAsync(identityUser);
+                var props = new AuthenticationProperties();
+                props.ExpiresUtc = DateTime.Now.AddDays(1);
+                props.IsPersistent = true;
 
-                var message = new Message(new string[] { "rodrigueschagas@bne.com.br" }, "Test", $"{token.Value}");
+                await _signInManager.SignInAsync(identityUser, props, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                _emailService.SendEmail(message);
-            
+                
+                //var message = new Message(new string[] { "rodrigueschagas@bne.com.br" }, "Test", $"{token.Value}");
+                //_emailService.SendEmail(message);
+                
                 return Result.Ok().WithSuccess(token.Value);
             }
 

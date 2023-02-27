@@ -1,12 +1,7 @@
-﻿using AutoMapper;
-using Azure.Core;
-using FluentResults;
+﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
-using SistemaDeLogin.ApplicationIdentity.Services;
-using SistemaDeLogin.Domain.EntitiesIdentity;
-using SistemaDeLogin.Infra.Data.Repository;
 
 namespace SistemaDeLogin.Controllers
 {
@@ -21,6 +16,7 @@ namespace SistemaDeLogin.Controllers
         }
         
         public IActionResult Index() {
+            var cookieRequest = HttpContext.Request.Cookies[".AspNetCore.Identity.Application"];
             if (User.Identity != null && User.Identity.IsAuthenticated) { return RedirectToAction("Index", "Home"); }
 
             return View();
@@ -53,5 +49,6 @@ namespace SistemaDeLogin.Controllers
 
         }
 
+        
     }
 }
