@@ -24,7 +24,7 @@ namespace SistemaDeLogin.Controllers
 
 
         [HttpPost]
-        public IActionResult LogaUsuario(LoginRequest request)
+        public async Task<IActionResult> LogaUsuario(LoginRequest request)
         {
             if (!ModelState.IsValid) return View("Index");
 

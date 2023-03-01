@@ -12,11 +12,6 @@ builder.Services.AddDependencyInjectionConfiguration();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddWebAppIdentityConfig(builder.Configuration);
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>{
-        options.LoginPath = "Login/Index";
-        options.Cookie.Name = "SistemaLoginCookies";
-    });
 
 builder.Services.AddAutoMapperConfiguration();
 var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfig>();

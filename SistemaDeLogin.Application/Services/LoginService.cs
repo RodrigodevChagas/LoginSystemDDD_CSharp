@@ -1,13 +1,10 @@
-﻿using AutoMapper;
-using FluentResults;
+﻿using FluentResults;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Domain.EntitiesIdentity;
-using SistemaDeLogin.Infra.CrossCutting.Identity.ConfigEmail;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
@@ -31,13 +28,14 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
                 IdentityUser<int> identityUser = _signInManager
                     .UserManager
                     .Users
-                    .FirstOrDefault(identidade => identidade.NormalizedUserName == request.Username.ToUpper())!;
+                    .FirstOrDefault(identidade =>
+                    identidade.NormalizedUserName == request.Username.ToUpper())!;
                 Token token = _tokenService.CreateToken(identityUser);
 
-                var userPrincial =  _signInManager.CreateUserPrincipalAsync(identityUser);
+                var userPrincial = await _signInManager.CreateUserPrincipalAsync(identityUser);
                 var props = new AuthenticationProperties();
-                props.ExpiresUtc = DateTime.Now.AddDays(1);
                 props.IsPersistent = true;
+                
 
                 await _signInManager.SignInAsync(identityUser, props, CookieAuthenticationDefaults.AuthenticationScheme);
 
