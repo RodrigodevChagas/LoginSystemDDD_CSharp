@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Domain.EntitiesIdentity;
+using SistemaDeLogin.Infra.CrossCutting.Identity.ConfigEmail;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {
@@ -23,30 +24,18 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
 
         public async Task<Result> LoginUser(LoginRequest request)
         {
-            var resultadoIdentity = _signInManager.PasswordSignInAsync(request.Username, request.Password, true, false);
-            if (resultadoIdentity.Result.Succeeded && request.Username != null) {
-                IdentityUser<int> identityUser = _signInManager
-                    .UserManager
-                    .Users
-                    .FirstOrDefault(identidade =>
-                    identidade.NormalizedUserName == request.Username.ToUpper())!;
-                Token token = _tokenService.CreateToken(identityUser);
+            var resultadoIdentity = await _signInManager.PasswordSignInAsync(request.Username, request.Password, true, false);
+            if (resultadoIdentity.IsNotAllowed | string.IsNullOrEmpty(request.Username)) 
+                return Result.Fail("Login Failed");
+            
+            IdentityUser<int> identityUser = _signInManager.UserManager.Users
+                .FirstOrDefault( identidade => identidade.NormalizedUserName == request.Username!.ToUpper())!;
 
-                var userPrincial = await _signInManager.CreateUserPrincipalAsync(identityUser);
-                var props = new AuthenticationProperties();
-                props.IsPersistent = true;
-                
+            Token token = _tokenService.CreateToken(identityUser);
 
-                await _signInManager.SignInAsync(identityUser, props, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                
-                //var message = new Message(new string[] { "rodrigueschagas@bne.com.br" }, "Test", $"{token.Value}");
-                //_emailService.SendEmail(message);
-                
-                return Result.Ok().WithSuccess(token.Value);
-            }
-
-            return Result.Fail("Login Failed");
+            await _signInManager.SignInAsync(identityUser, authentication(), CookieAuthenticationDefaults.AuthenticationScheme);
+            
+            return Result.Ok().WithSuccess(token.Value);
         }
 
         public Result LogoutUser()
@@ -55,5 +44,19 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
             if (resultadoIdentity.IsCompletedSuccessfully) return Result.Ok();
             return Result.Fail("Login Failed");
         }
+
+        static AuthenticationProperties authentication() 
+        {
+            var authProps = new AuthenticationProperties();
+            authProps.IsPersistent = true;
+            authProps.ExpiresUtc = DateTime.Now.AddDays(1);
+            return authProps;
+        }
+
+        //private void SendEmail() 
+        //{
+        //    var message = new Message(new string[] { "rodrigueschagas@bne.com.br" }, "Test", $"VASCAOOOO DA GAMAAA!!!!!!!!");
+        //    _emailService.SendEmail(message);  
+        //}
     }
 }

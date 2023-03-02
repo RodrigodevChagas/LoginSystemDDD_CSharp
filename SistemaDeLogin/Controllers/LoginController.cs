@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace SistemaDeLogin.Controllers
 {
@@ -16,7 +17,7 @@ namespace SistemaDeLogin.Controllers
         }
         
         public IActionResult Index() {
-            var cookieRequest = HttpContext.Request.Cookies[".AspNetCore.Identity.Application"];
+            //var cookieRequest = HttpContext.Request.Cookies[".AspNetCore.Identity.Application"];
             if (User.Identity != null && User.Identity.IsAuthenticated) { return RedirectToAction("Index", "Home"); }
 
             return View();
@@ -24,7 +25,7 @@ namespace SistemaDeLogin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> LogaUsuario(LoginRequest request)
+        public IActionResult LogaUsuario(LoginRequest request)
         {
             if (!ModelState.IsValid) return View("Index");
 

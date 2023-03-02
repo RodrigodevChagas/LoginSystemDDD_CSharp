@@ -16,6 +16,7 @@ namespace SistemaDeLogin.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated) { return RedirectToAction("Index", "Home"); }
             return View();
         }
 

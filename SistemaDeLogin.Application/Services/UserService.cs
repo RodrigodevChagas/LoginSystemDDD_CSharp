@@ -32,16 +32,5 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
             
             return Result.Ok();
         }
-
-        //public Result UserCheck() 
-        //{
-        //    if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name))
-        //    {
-        //        Usuarios user = new Usuarios();
-        //        user.Username = request.Username != null ? request.Username : User.Identity.Name;
-        //        user = userRepository.GetUserInfo(user);
-        //    }
-        //        return View(user);
-        //}
     }
 }
