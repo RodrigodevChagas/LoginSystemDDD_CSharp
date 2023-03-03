@@ -5,6 +5,7 @@ using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.Infra.Data.Interface;
 using SistemaDeLogin.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace SistemaDeLogin.Controllers
 {
@@ -23,12 +24,15 @@ namespace SistemaDeLogin.Controllers
             this.userService = userService;
         }
 
-        public IActionResult Index(LoginRequest request)
+        //Implementar utilização do identity para não ficar com login e senha a mostra.
+        [Route("HomeBoladao")]
+        public IActionResult Index()
         {
-            if(User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name)) 
+            if(User.Identity !=null && User.Identity.IsAuthenticated) 
             {
+               
                 Usuarios user = new Usuarios();
-                user.Username = request.Username != null ? request.Username : User.Identity.Name;
+                user.Username = User.FindFirst(ClaimTypes.Name)?.Value!;
                 user = userRepository.GetUserInfo(user);
                 return View(user);
             }

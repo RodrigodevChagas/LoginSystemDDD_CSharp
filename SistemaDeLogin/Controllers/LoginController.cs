@@ -15,7 +15,6 @@ namespace SistemaDeLogin.Controllers
         {
             this.loginService = loginService;
         }
-        
         public IActionResult Index() {
             //var cookieRequest = HttpContext.Request.Cookies[".AspNetCore.Identity.Application"];
             if (User.Identity != null && User.Identity.IsAuthenticated) { return RedirectToAction("Index", "Home"); }
@@ -37,7 +36,7 @@ namespace SistemaDeLogin.Controllers
                 return View("Index");
             }
    
-            return RedirectToAction("Index", "Home", request);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Logout() {
