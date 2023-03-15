@@ -32,7 +32,7 @@ namespace SistemaDeLogin.Controllers
             {
                
                 Usuarios user = new Usuarios();
-                user.Username = User.FindFirst(ClaimTypes.Name)?.Value!;
+                user.Email = User.FindFirst(ClaimTypes.Email)?.Value!;
                 user = userRepository.GetUserInfo(user);
                 return View(user);
             }

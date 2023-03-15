@@ -2,7 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.Infra.DataIdentity.Context;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
+using Duende.IdentityServer.AspNetIdentity;
+using System.Security.Policy;
 
 namespace SistemaDeLogin.Infra.CrossCutting.Identity
 {
@@ -31,8 +36,21 @@ namespace SistemaDeLogin.Infra.CrossCutting.Identity
                 // Default SignIn settings.
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
-
             });
+
+            //services.AddIdentity<UserApiAuth, IdentityRole>()
+            //.AddEntityFrameworkStores<DbContextApiAuth>()
+            //.AddDefaultTokenProviders();
+
+            services.AddIdentityServer().AddApiAuthorization<IdentityUser<int>, DbContextApiAuth>();
+            //services.AddScoped<ProfileService<UserApiAuth>>();
+            
+            services.AddAuthentication().AddIdentityServerJwt().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = "904390947652-8o1b7cotbchllers2pjkpc2dlhcfemai.apps.googleusercontent.com";
+                googleOptions.ClientSecret = "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";
+            });
+
         }
     }
 }

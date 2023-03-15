@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 
 namespace SistemaDeLogin.Controllers
 {
@@ -38,7 +40,27 @@ namespace SistemaDeLogin.Controllers
    
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet("signin-google")]
+        public IActionResult SignInGoogle()
+        {
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = Url.Action(nameof(HandleGoogleCallback))
+            };
 
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
+        [HttpGet("handle-google-callback")]
+        public async Task<IActionResult> HandleGoogleCallback()
+        {
+            var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+
+            // Autentica o usuário em seu sistema
+            // Envie o token de autenticação para o servidor para autenticar o usuário
+
+            return Redirect("/");
+        }
         public IActionResult Logout() {
 
             Result result = loginService.LogoutUser();
