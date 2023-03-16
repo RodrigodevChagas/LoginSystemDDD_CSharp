@@ -16,7 +16,7 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
 
         public Result UploadProfilePic(Usuarios user, string RootPath) 
         {
-            string fileName = Path.GetFileNameWithoutExtension(user.ProfilePicFile.FileName);
+            string fileName = Path.GetFileNameWithoutExtension(user.ProfilePicFile!.FileName);
             string extension = Path.GetExtension(user.ProfilePicFile.FileName);
             user.ProfilePic = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
             string path = Path.Combine(RootPath + "/Image", fileName);

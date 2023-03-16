@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using SistemaDeLogin.AplicationIdentity.Requests;
 using SistemaDeLogin.ApplicationIdentity.Interfaces;
 using SistemaDeLogin.Domain.EntitiesIdentity;
 using SistemaDeLogin.Infra.CrossCutting.Identity.ConfigEmail;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace SistemaDeLogin.ApplicationIdentity.Services
 {

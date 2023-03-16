@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication;
 using Duende.IdentityServer.AspNetIdentity;
 using System.Security.Policy;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SistemaDeLogin.Infra.CrossCutting.Identity
 {
@@ -44,12 +47,32 @@ namespace SistemaDeLogin.Infra.CrossCutting.Identity
 
             services.AddIdentityServer().AddApiAuthorization<IdentityUser<int>, DbContextApiAuth>();
             //services.AddScoped<ProfileService<UserApiAuth>>();
-            
-            services.AddAuthentication().AddIdentityServerJwt().AddGoogle(googleOptions =>
+
+            services.AddAuthentication(options =>
             {
-                googleOptions.ClientId = "904390947652-8o1b7cotbchllers2pjkpc2dlhcfemai.apps.googleusercontent.com";
-                googleOptions.ClientSecret = "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";
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("0asdjas09djsa09djasdjsadajsd09asjd09sajcnzxn")),
+                    ValidateIssuer = true,
+                    ValidIssuer = "suaIssuer",
+                    ValidateAudience = true,
+                    ValidAudience = "suaAudience",
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
             });
+
+            //services.AddAuthentication().AddIdentityServerJwt().AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = "904390947652-8o1b7cotbchllers2pjkpc2dlhcfemai.apps.googleusercontent.com";
+            //    googleOptions.ClientSecret = "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";
+            //});
 
         }
     }

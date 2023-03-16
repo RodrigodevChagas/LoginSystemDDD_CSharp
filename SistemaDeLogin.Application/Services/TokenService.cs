@@ -29,7 +29,10 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
 
                     claims: direitosUsuario,
                     signingCredentials: credenciais,
-                    expires: DateTime.UtcNow.AddHours(1)
+                    expires: DateTime.UtcNow.AddHours(8),
+                    audience: "suaAudience",
+                    issuer: "suaIssuer"
+
                 );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
