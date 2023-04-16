@@ -56,10 +56,5 @@ namespace SistemaDeLogin.ApplicationIdentity.Services
             return authProps;
         }
 
-        //private void SendEmail() 
-        //{
-        //    var message = new Message(new string[] { "rodrigueschagas@bne.com.br" }, "Test", $"VASCAOOOO DA GAMAAA!!!!!!!!");
-        //    _emailService.SendEmail(message);  
-        //}
     }
 }

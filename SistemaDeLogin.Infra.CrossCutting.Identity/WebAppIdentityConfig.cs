@@ -43,12 +43,6 @@ namespace SistemaDeLogin.Infra.CrossCutting.Identity
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             });
 
-            //services.AddIdentity<UserApiAuth, IdentityRole>()
-            //.AddEntityFrameworkStores<DbContextApiAuth>()
-            //.AddDefaultTokenProviders();
-
-            //services.AddScoped<ProfileService<UserApiAuth>>();
-
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
@@ -59,11 +53,6 @@ namespace SistemaDeLogin.Infra.CrossCutting.Identity
                 options.ExpireTimeSpan = TimeSpan.FromDays(1);
             });
 
-            //services.AddAuthentication().AddIdentityServerJwt().AddGoogle(googleOptions =>
-            //{
-            //    googleOptions.ClientId = "904390947652-8o1b7cotbchllers2pjkpc2dlhcfemai.apps.googleusercontent.com";
-            //    googleOptions.ClientSecret = "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";
-            //});
 
         }
     }
