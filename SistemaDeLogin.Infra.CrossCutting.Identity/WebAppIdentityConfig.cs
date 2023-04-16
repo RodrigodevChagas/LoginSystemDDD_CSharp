@@ -11,6 +11,8 @@ using System.Security.Policy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace SistemaDeLogin.Infra.CrossCutting.Identity
 {
@@ -45,27 +47,16 @@ namespace SistemaDeLogin.Infra.CrossCutting.Identity
             //.AddEntityFrameworkStores<DbContextApiAuth>()
             //.AddDefaultTokenProviders();
 
-            services.AddIdentityServer().AddApiAuthorization<IdentityUser<int>, DbContextApiAuth>();
             //services.AddScoped<ProfileService<UserApiAuth>>();
 
-            services.AddAuthentication(options =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("0asdjas09djsa09djasdjsadajsd09asjd09sajcnzxn")),
-                    ValidateIssuer = true,
-                    ValidIssuer = "suaIssuer",
-                    ValidateAudience = true,
-                    ValidAudience = "suaAudience",
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero
-                };
+                options.Cookie.Name = "myapp-auth-cookie"; // define o nome do cookie
+                options.Cookie.HttpOnly = true; // define se o cookie é acessível somente pelo HTTP
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest; // define a política de segurança do cookie
+                options.Cookie.SameSite = SameSiteMode.Strict; // define o modo SameSite do cookie
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
             });
 
             //services.AddAuthentication().AddIdentityServerJwt().AddGoogle(googleOptions =>
