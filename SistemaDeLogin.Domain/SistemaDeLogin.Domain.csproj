@@ -7,9 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\**" />
+    <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Entities\**" />
+    <None Remove="Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="CommandHandlers\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Interfaces\Repository\" />
   </ItemGroup>
 
   <ItemGroup>

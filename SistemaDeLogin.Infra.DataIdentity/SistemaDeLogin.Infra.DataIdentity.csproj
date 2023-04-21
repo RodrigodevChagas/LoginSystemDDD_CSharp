@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\" />
-    <Folder Include="Repository\" />
+    <Compile Remove="Mappings\**" />
+    <Compile Remove="Repository\**" />
+    <EmbeddedResource Remove="Mappings\**" />
+    <EmbeddedResource Remove="Repository\**" />
+    <None Remove="Mappings\**" />
+    <None Remove="Repository\**" />
   </ItemGroup>
 
   <ItemGroup>
